@@ -73,20 +73,6 @@ const ThemeLayout = WrappedComponent => {
         });
       };
 
-      const toggleSearch = () => {
-        this.setState({
-          activeSearch: !activeSearch,
-        });
-      };
-
-      const handleSearchHide = e => {
-        e.preventDefault();
-        this.setState({
-          searchHide: !searchHide,
-          hide: true,
-        });
-      };
-
       const footerStyle = {
         padding: '20px 30px 18px',
         color: 'rgba(0, 0, 0, 0.65)',
