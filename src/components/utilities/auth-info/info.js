@@ -1,17 +1,18 @@
-import React  from 'react';
-import { Avatar } from 'antd';
+import React from 'react';
+import { Avatar, Typography } from 'antd';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import FeatherIcon from 'feather-icons-react';
 import { InfoWraper, UserDropDwon } from './auth-info-style';
-import Message from './message';
-import Notification from './notification';
 import { Popover } from '../../popup/popup';
 import { logOut } from '../../../redux/authentication/actionCreator';
 import Heading from '../../heading/heading';
 
+const { Text } = Typography;
 const AuthInfo = () => {
   const dispatch = useDispatch();
+  const User = useSelector(state => state.auth.user);
+  const Api = useSelector(state => state.auth.api);
   const SignOut = e => {
     e.preventDefault();
     dispatch(logOut());
@@ -21,10 +22,10 @@ const AuthInfo = () => {
     <UserDropDwon>
       <div className="user-dropdwon">
         <figure className="user-dropdwon__info">
-          <img src={require('../../../static/img/avatar/chat-auth.png')} alt="" />
+          <img src={require('../../../static/img/icon/155-credit-card.svg')} width="60em" alt="$" />
           <figcaption>
-            <Heading as="h5">Admin</Heading>
-            <p>UI Expert</p>
+            <Heading as="h5">Balance</Heading>
+            <Text type="success">{Api?.accountData.balance} $</Text>
           </figcaption>
         </figure>
         <ul className="user-dropdwon__links">
@@ -63,11 +64,7 @@ const AuthInfo = () => {
 
   return (
     <InfoWraper>
-      <Message />
-      <Notification />
-
-      {/* <Settings /> */}
-
+      <Text type="success">Welcome back!, {User?.name}</Text>
       <div className="nav-author">
         <Popover placement="bottomRight" content={userContent} action="click">
           <Link to="#" className="head-example">

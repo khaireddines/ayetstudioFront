@@ -62,7 +62,7 @@ const MenuItems = ({ darkMode, toggleCollapsed, topMenu }) => {
             Account Module
           </NavLink>
         </Menu.Item>
-        <Menu.Item key="AccountDetails">
+        <Menu.Item key="AccountD">
           <NavLink onClick={toggleCollapsed} to={`${path}/AccountModule2`}>
             Account Module
           </NavLink>

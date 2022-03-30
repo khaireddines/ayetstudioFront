@@ -5,18 +5,12 @@ import FeatherIcon from 'feather-icons-react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Div } from './header-search-style';
-import { headerSearchAction } from '../../redux/headerSearch/actionCreator';
 import { Popover } from '../popup/popup';
 
 const HeaderSearch = ({ darkMode }) => {
   const dispatch = useDispatch();
   const searchData = useSelector(state => state.headerSearchData);
   const rtl = useSelector(state => state.ChangeLayoutMode.rtlData);
-
-  const search = e => {
-    dispatch(headerSearchAction(e.target.value));
-  };
-
   const content = (
     <div>
       {searchData.length ? (

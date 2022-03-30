@@ -1,17 +1,22 @@
-export const BASE_URL = 'http://localhost:8000/api';
+export const GET_AUTH_TOKENS = `/oauth/token`;
+export const USER_DETAILS = `/api/UserDetails`;
+export const CREATE_USER = `/api/CreateUser`;
+export const MODIFY_API = `/api/ModifyApiKey`;
+export const ACCOUNT_DETAILS = `/api/Account/GetAccountDetails`;
+export const ACCOUNT_RATES = `/api/Account/GetRates`;
+export const ACCOUNT_TRACKING_PROVIDER = `/api/Account/GetTrackingProviders`;
+export const CAMPAIGN_LIST = `/api/Campaign/GetCampaignsList`;
+export const GET_A_CAMPAIGN = `/api/Campaign/GetACampaign`;
+export const START_A_CAMPAIGN = `/api/Campaign/StartACampaign`;
+export const PAUSE_A_CAMPAIGN = `/api/Campaign/PauseACampaign`;
+export const GET_CAMPAIGN_SUMMARY = `/api/Campaign/GetSummary`;
+export const GET_CAMPAIGN_DAILY_SUMMARY = `/api/Reporting/GetSummaryDaily`;
+export const GET_INSTALLATION_REPORTING = `/api/Reporting/GetInstallations`;
+export const GET_REPORTING_STATS = `/api/Reporting/GetStats`;
+export const GET_TRAFFIC_ANALYSIS_REPORTING = `/api/Reporting/GetTrafficAnalysis`;
 
-export const GET_AUTH_TOKENS = `${BASE_URL}/oauth/token`;
-export const CREATE_USER = `${BASE_URL}/CreateUser`;
-export const MODIFY_API = `${BASE_URL}/ModifyApiKey`;
-export const ACCOUNT_DETAILS = `${BASE_URL}/Account/GetAccountDetails`;
-export const ACCOUNT_RATES = `${BASE_URL}/Account/GetRates`;
-export const ACCOUNT_TRACKING_PROVIDER = `${BASE_URL}/Account/GetTrackingProviders`;
-export const CAMPAIGN_LIST = `${BASE_URL}/Campaign/GetCampaignsList`;
-export const GET_A_CAMPAIGN = `${BASE_URL}/Campaign/GetACampaign`;
-export const START_A_CAMPAIGN = `${BASE_URL}/Campaign/StartACampaign`;
-export const PAUSE_A_CAMPAIGN = `${BASE_URL}/Campaign/PauseACampaign`;
-export const GET_CAMPAIGN_SUMMARY = `${BASE_URL}/Campaign/GetSummary`;
-export const GET_CAMPAIGN_DAILY_SUMMARY = `${BASE_URL}/Reporting/GetSummaryDaily`;
-export const GET_INSTALLATION_REPORTING = `${BASE_URL}/Reporting/GetInstallations`;
-export const GET_REPORTING_STATS = `${BASE_URL}/Reporting/GetStats`;
-export const GET_TRAFFIC_ANALYSIS_REPORTING = `${BASE_URL}/Reporting/GetTrafficAnalysis`;
+export const AUTH_PAYLOAD = {
+  grant_type: 'password',
+  client_id: '2',
+  client_secret: '7SWoB6pziknpyH2lDYLrn4ymzlXtm279NGJH7tPh',
+};

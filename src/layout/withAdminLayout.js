@@ -12,6 +12,7 @@ import TopMenu from './TopMenu';
 import { Div, SmallScreenAuthInfo, SmallScreenSearch, TopMenuSearch } from './style';
 import HeaderSearch from '../components/header-search/header-search';
 import AuthInfo from '../components/utilities/auth-info/info';
+import { GetUserDetails } from '../redux/authentication/actionCreator';
 
 const { darkTheme } = require('../config/theme/themeVariables');
 
@@ -33,6 +34,7 @@ const ThemeLayout = WrappedComponent => {
 
     componentDidMount() {
       window.addEventListener('resize', this.updateDimensions);
+      this.props.dispatch(GetUserDetails());
       this.updateDimensions();
     }
 
@@ -155,14 +157,11 @@ const ThemeLayout = WrappedComponent => {
                     className={topMenu && window.innerWidth > 991 ? 'striking-logo top-menu' : 'striking-logo'}
                     to="/admin"
                   >
-                    <img
-                      src={!darkMode ? require(`../static/img/Logo_Dark.svg`) : require(`../static/img/Logo_white.png`)}
-                      alt=""
-                    />
+                    MyLogo
                   </Link>
                 </Col>
 
-                <Col lg={!topMenu ? 14 : 15} md={8} sm={0} xs={0}></Col>
+                <Col lg={!topMenu ? 14 : 15} md={8} sm={0} xs={0} />
 
                 <Col lg={6} md={10} sm={0} xs={0}>
                   {topMenu && window.innerWidth > 991 ? (
@@ -177,13 +176,11 @@ const ThemeLayout = WrappedComponent => {
                 </Col>
 
                 <Col md={0} sm={18} xs={12}>
-                  <>
-                    <div className="mobile-action">
-                      <Link className="btn-auth" onClick={onShowHide} to="#">
-                        <FeatherIcon icon="more-vertical" />
-                      </Link>
-                    </div>
-                  </>
+                  <div className="mobile-action">
+                    <Link className="btn-auth" onClick={onShowHide} to="#">
+                      <FeatherIcon icon="more-vertical" />
+                    </Link>
+                  </div>
                 </Col>
               </Row>
             </Header>

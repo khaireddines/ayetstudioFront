@@ -3,8 +3,7 @@ import Styled from 'styled-components';
 const InfoWraper = Styled.div`
     display: flex;
     justify-content: flex-end;
-    align-items: center;
-    padding: 16px 0;        
+    align-items: center; 
     .head-example{
         text-decoration: none;
         color: ${({ theme }) => theme['text-color-secondary']};

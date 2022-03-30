@@ -1,27 +1,44 @@
 import Cookies from 'js-cookie';
 import actions from './actions';
+import api from '../../utility/api';
+import { ACCOUNT_DETAILS, AUTH_PAYLOAD, GET_AUTH_TOKENS, USER_DETAILS } from '../../constants/endpoints';
+import { removeItem, setItem } from '../../utility/localStorageControl';
 
-const { loginBegin, loginSuccess, loginErr, logoutBegin, logoutSuccess, logoutErr } = actions;
+const { loginBegin, loginSuccess, loginErr, logoutBegin, logoutSuccess, logoutErr, UserDetails, ApiDetails } = actions;
 
-const login = () => {
+const GetUserDetails = () => {
   return async dispatch => {
-    try {
-      dispatch(loginBegin());
-      setTimeout(() => {
-        Cookies.set('logedIn', true);
-        return dispatch(loginSuccess(true));
-      }, 1000);
-    } catch (err) {
-      dispatch(loginErr(err));
-    }
+    api.get(USER_DETAILS).then(res => {
+      dispatch(UserDetails(res.data));
+    });
+    api.get(ACCOUNT_DETAILS).then(res => {
+      dispatch(ApiDetails(res.data));
+    });
   };
 };
-
+const login = ({ username, password }) => {
+  return async dispatch => {
+    dispatch(loginBegin());
+    api
+      .post(GET_AUTH_TOKENS, { ...AUTH_PAYLOAD, username, password })
+      .then(res => {
+        api.defaults.headers.common.authorization = `Bearer ${res.data.access_token}`;
+        setItem('Auth', res.data);
+        dispatch(loginSuccess(res.data));
+      })
+      .then(() => {
+        dispatch(GetUserDetails());
+      })
+      .catch(err => {
+        dispatch(loginErr(err.response.data));
+      });
+  };
+};
 const logOut = () => {
   return async dispatch => {
     try {
       dispatch(logoutBegin());
-      Cookies.remove('logedIn');
+      removeItem('Auth');
       dispatch(logoutSuccess(null));
     } catch (err) {
       dispatch(logoutErr(err));
@@ -29,4 +46,4 @@ const logOut = () => {
   };
 };
 
-export { login, logOut };
+export { login, logOut, GetUserDetails };

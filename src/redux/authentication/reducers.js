@@ -1,18 +1,26 @@
 import Cookies from 'js-cookie';
 import actions from './actions';
+import { getItem } from '../../utility/localStorageControl';
 
-const { LOGIN_BEGIN, LOGIN_SUCCESS, LOGIN_ERR, LOGOUT_BEGIN, LOGOUT_SUCCESS, LOGOUT_ERR } = actions;
+const {
+  LOGIN_BEGIN,
+  LOGIN_SUCCESS,
+  LOGIN_ERR,
+  LOGOUT_BEGIN,
+  LOGOUT_SUCCESS,
+  LOGOUT_ERR,
+  USER_DETAILS,
+  API_DETAILS,
+} = actions;
 
 const initState = {
-  login: Cookies.get('logedIn'),
+  login: getItem('Auth'),
+  user: null,
+  api: null,
   loading: false,
   error: null,
 };
 
-/**
- *
- * @todo impure state mutation/explaination
- */
 const AuthReducer = (state = initState, action) => {
   const { type, data, err } = action;
   switch (type) {
@@ -26,6 +34,17 @@ const AuthReducer = (state = initState, action) => {
         ...state,
         login: data,
         loading: false,
+        error: null,
+      };
+    case USER_DETAILS:
+      return {
+        ...state,
+        user: data,
+      };
+    case API_DETAILS:
+      return {
+        ...state,
+        api: data,
       };
     case LOGIN_ERR:
       return {
@@ -43,6 +62,7 @@ const AuthReducer = (state = initState, action) => {
         ...state,
         login: data,
         loading: false,
+        error: null,
       };
     case LOGOUT_ERR:
       return {
